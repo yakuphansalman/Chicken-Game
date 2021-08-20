@@ -10,22 +10,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _secondRoad;
     [SerializeField] private GameObject _thirdRoad;
 
-    private bool _isLevelChanged;
-
-    [SerializeField] private int _levelPhase
-    {
-        get
-        {
-            return _levelPhase;
-        }
-        set
-        {
-            _levelPhase = value;
-            _isLevelChanged = true;
-        }
-    }
+    [SerializeField] private int _levelPhase;
 
     private const float _roadWidth = 25f;
+
+    private bool _isGameOver;
 
     #region Encapsulated Variables
     public GameObject firstRoad => _firstRoad;
@@ -34,7 +23,6 @@ public class GameManager : MonoBehaviour
 
     public int levelPhase => _levelPhase;
 
-    public bool isLevelChanged => _isLevelChanged;
     #endregion
 
     #endregion
@@ -67,9 +55,9 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        _isLevelChanged = false;
         CheckLevelPhases();
         PutTheRoads();
+        CheckTheGame();
     }
     private void CheckLevelPhases()
     {
@@ -110,4 +98,16 @@ public class GameManager : MonoBehaviour
             _secondRoad.transform.position = _thirdRoad.transform.position + offset;
         }
     }
+    private void CheckTheGame()
+    {
+        if (_isGameOver)
+        {
+            Time.timeScale = 0;
+        }
+        if (PlayerController.Instance.healthPoint == 0)
+        {
+            _isGameOver = true;
+        }
+    }
+
 }

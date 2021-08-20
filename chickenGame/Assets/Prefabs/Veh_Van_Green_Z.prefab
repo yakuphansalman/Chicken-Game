@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 3262297648785673635}
   - component: {fileID: 6280423292423513800}
   - component: {fileID: 735787893729281152}
+  - component: {fileID: 5308841626498516897}
   m_Layer: 0
   m_Name: Veh_Van_Green_Z
-  m_TagString: Untagged
+  m_TagString: Vehicle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,7 +99,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c27005c557d7ceb42a15a00a7d10a0e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 3
+  _speed: 12
+--- !u!65 &5308841626498516897
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2283808010157509882}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.4368925, y: 2.6020634, z: 5.6178155}
+  m_Center: {x: 0, y: 1.5559858, z: -0.00000023841858}
 --- !u!1 &3466196481515268640
 GameObject:
   m_ObjectHideFlags: 0

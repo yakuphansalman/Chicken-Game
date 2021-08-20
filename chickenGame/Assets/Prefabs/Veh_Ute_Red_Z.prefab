@@ -174,9 +174,10 @@ GameObject:
   - component: {fileID: 6503973491641439254}
   - component: {fileID: 2021907937124734748}
   - component: {fileID: 2655191769561348785}
+  - component: {fileID: 9065343830707295178}
   m_Layer: 0
   m_Name: Veh_Ute_Red_Z
-  m_TagString: Untagged
+  m_TagString: Vehicle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -260,7 +261,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c27005c557d7ceb42a15a00a7d10a0e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 4
+  _speed: 16
+--- !u!65 &9065343830707295178
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3435687595001289523}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.159401, y: 2.2641532, z: 5.3768578}
+  m_Center: {x: 0, y: 1.4147826, z: 0}
 --- !u!1 &6720360661171948777
 GameObject:
   m_ObjectHideFlags: 0

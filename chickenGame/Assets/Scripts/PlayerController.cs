@@ -6,9 +6,12 @@ public class PlayerController : MonoBehaviour
 {
     #region Variables
     [SerializeField] private float _speed;
+    private float _difficultyMultiplier = 1.1f;
+    private float _healthPoint = 3;
 
     #region Encapsulated Variables
     public float speed => _speed;
+    public float healthPoint => _healthPoint;
     #endregion
 
     #endregion
@@ -41,6 +44,18 @@ public class PlayerController : MonoBehaviour
     {
         float horizontalInput = Input.GetAxis("Horizontal");
         transform.position += Vector3.right * horizontalInput * _speed * Time.deltaTime;
+        if (transform.position.x < -100 * _difficultyMultiplier)
+        {
+            _speed *= _difficultyMultiplier;
+            _difficultyMultiplier = speed/2;
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Vehicle"))
+        {
+            _healthPoint--;
+        }
     }
 
 }
