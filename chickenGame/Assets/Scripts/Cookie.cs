@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cookie : MonoBehaviour
+public class Cookie : Rotater
 {
-    [SerializeField] private float _rotationSpeed;
     private float _randomNumber;
-
     private void Start()
     {
         float random = Random.Range(0, 2);
@@ -19,9 +17,8 @@ public class Cookie : MonoBehaviour
             _randomNumber = Random.Range(0.5f, 1.0f);
         }
     }
-    private void Update()
+    public override void RotateObject()
     {
-        
-        transform.Rotate(new Vector3(_randomNumber, _randomNumber, _randomNumber) * _rotationSpeed * Time.deltaTime);
+        transform.Rotate(new Vector3(_randomNumber, _randomNumber, _randomNumber) * rotationSpeed * Time.deltaTime);
     }
 }

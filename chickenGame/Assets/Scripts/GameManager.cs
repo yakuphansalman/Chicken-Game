@@ -13,8 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _levelPhase;
 
     private const float _roadWidth = 25f;
-    private float _score = 0;
-    private float[] _scores;
+    private int _score;
 
     private bool _isGameOver;
 
@@ -25,7 +24,7 @@ public class GameManager : MonoBehaviour
 
     public int levelPhase => _levelPhase;
 
-    public float score => _score;
+    public int score => _score;
 
     public bool isGameOver => _isGameOver;
 

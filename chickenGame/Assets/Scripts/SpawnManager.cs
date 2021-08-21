@@ -15,7 +15,7 @@ public class SpawnManager : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating("InstantiatePooledObjects", 0.5f, _spawnRate);
+        InvokeRepeating("InstantiatePooledObjects", 0.1f, _spawnRate);
     }
     private void Update()
     {

@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private Button _cookieButton;
     [SerializeField] private TextMeshProUGUI _scoreText;
+    [SerializeField] private Text _player;
  
     private GameObject _cookie;
     private GameObject[] _cookies;
@@ -22,6 +23,7 @@ public class UIManager : MonoBehaviour
             InstantiateCookies(_cookie, Vector3.left * i * 15);
         }
         _cookies = GameObject.FindGameObjectsWithTag("Cookie");
+        _player.text = DataManager.Instance.dm_player;
     }
 
     private void Update()
