@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _levelPhase;
 
     private const float _roadWidth = 25f;
+    private float _score = 0;
+    private float[] _scores;
 
     private bool _isGameOver;
 
@@ -22,6 +24,10 @@ public class GameManager : MonoBehaviour
     public GameObject thirdRoad => _thirdRoad;
 
     public int levelPhase => _levelPhase;
+
+    public float score => _score;
+
+    public bool isGameOver => _isGameOver;
 
     #endregion
 
@@ -58,6 +64,7 @@ public class GameManager : MonoBehaviour
         CheckLevelPhases();
         PutTheRoads();
         CheckTheGame();
+        ManageScore();
     }
     private void CheckLevelPhases()
     {
@@ -104,10 +111,21 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 0;
         }
+        if (!_isGameOver)
+        {
+            Time.timeScale = 1;
+        }
         if (PlayerController.Instance.healthPoint == 0)
         {
             _isGameOver = true;
         }
+        if (PlayerController.Instance.healthPoint > 0)
+        {
+            _isGameOver = false;
+        }
     }
-
+    private void ManageScore()
+    {
+        _score = (int)(Mathf.Abs(PlayerController.Instance.transform.position.x / _roadWidth) * 100);
+    }
 }

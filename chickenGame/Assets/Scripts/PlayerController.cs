@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        _healthPoint = 3;
         _instance = this;
     }
     private void FixedUpdate()
@@ -55,6 +56,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Vehicle"))
         {
             _healthPoint--;
+            other.gameObject.SetActive(false);
         }
     }
 
