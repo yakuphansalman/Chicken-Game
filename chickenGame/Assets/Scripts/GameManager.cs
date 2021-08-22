@@ -109,6 +109,7 @@ public class GameManager : MonoBehaviour
         if (_isGameOver)
         {
             Time.timeScale = 0;
+            DataManager.Instance.SaveData();
         }
         if (!_isGameOver)
         {

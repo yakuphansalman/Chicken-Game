@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private Button _cookieButton;
     [SerializeField] private TextMeshProUGUI _scoreText;
+    [SerializeField] private TextMeshProUGUI _highScoreText;
     [SerializeField] private Text _player;
  
     private GameObject _cookie;
@@ -38,8 +39,19 @@ public class UIManager : MonoBehaviour
         if (GameManager.Instance.isGameOver)
         {
             _gameOverTitle.SetActive(true);
+            _player.gameObject.SetActive(false);
         }
+        
         _scoreText.text = "Your score is " + GameManager.Instance.score;
+        if (DataManager.Instance.dm_player == DataManager.Instance.dm_highScorer)
+        {
+            _highScoreText.text = "You are the high scorer your score is " + DataManager.Instance.dm_highScore;
+            _player.text = DataManager.Instance.dm_player + " the high scorer";
+        }
+        else
+        {
+            _highScoreText.text = "High score is " + DataManager.Instance.dm_highScore + " high scorer is " + DataManager.Instance.dm_highScorer;
+        }
     }
 
     private void InstantiateCookies(GameObject cookie , Vector3 offset)

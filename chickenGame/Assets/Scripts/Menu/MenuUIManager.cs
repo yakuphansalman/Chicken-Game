@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEditor;
 
 public class MenuUIManager : MonoBehaviour
 {
@@ -22,12 +23,14 @@ public class MenuUIManager : MonoBehaviour
         }
         Instance = this;
     }
-    private void Start()
-    {
-        _nameEntered.text = DataManager.Instance.dm_player;
-    }
+    
     public void LoadScene(int scene)
     {
         SceneManager.LoadScene(scene);
+    }
+    public void Quit()
+    {
+        DataManager.Instance.SaveData();
+        EditorApplication.ExitPlaymode();
     }
 }

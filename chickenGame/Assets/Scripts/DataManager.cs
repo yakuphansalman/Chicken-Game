@@ -2,14 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class DataManager : MonoBehaviour
 {
     #region Variables
 
     private int _highScore;
+
     private string _highScorer;
     private string _player;
+
+    private Scene _scene;
 
     #region Encapsulated Variables
     public int dm_highScore => _highScore;
@@ -35,13 +39,18 @@ public class DataManager : MonoBehaviour
         LoadData();
         
     }
-    private void Start()
+    private void Update()
     {
-        if (GameManager.Instance.score > _highScore)
+        _scene = SceneManager.GetActiveScene();
+        if (_scene == SceneManager.GetSceneByName("SampleScene"))
         {
-            _highScore = GameManager.Instance.score;
-            _highScorer = _player;
+            if (GameManager.Instance.score > _highScore)
+            {
+                _highScore = GameManager.Instance.score;
+                _highScorer = _player;
+            }
         }
+        _player = MenuUIManager.Instance.nameEntered;
     }
 
     public void SetPlayerName()

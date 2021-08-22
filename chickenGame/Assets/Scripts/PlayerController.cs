@@ -6,7 +6,6 @@ public class PlayerController : MonoBehaviour
 {
     #region Variables
     [SerializeField] private float _speed;
-    private float _difficultyMultiplier = 1.1f;
     private float _healthPoint = 3;
     private float _horizontalInput;
 
@@ -43,7 +42,6 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
-        MakeItDifficult();
         CreateBound();
     }
     private void Move()
@@ -51,14 +49,7 @@ public class PlayerController : MonoBehaviour
         _horizontalInput = Input.GetAxis("Horizontal");
         transform.position += Vector3.right * _horizontalInput * _speed * Time.deltaTime;
     }
-    private void MakeItDifficult()
-    {
-        if (transform.position.x < -100 * _difficultyMultiplier)
-        {
-            _speed *= _difficultyMultiplier;
-            _difficultyMultiplier = speed / 2;
-        }
-    }
+    
     private void CreateBound()
     {
         if (transform.position.x > 0)
