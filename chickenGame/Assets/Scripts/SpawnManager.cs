@@ -5,7 +5,9 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private ObjectPool _pool;
+
     [SerializeField] private float _spawnRate;
+
     [SerializeField] private Vector3 _offsetZ;
     [SerializeField] private Vector3 _offsetX;
 
@@ -15,13 +17,12 @@ public class SpawnManager : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating("InstantiatePooledObjects", 0.1f, _spawnRate);
+        InvokeRepeating("InstantiatePooledObjects", 0.2f, _spawnRate);
     }
     private void Update()
     {
-        
         SetSpawnPosition();
-        
+        MakeItDifficult();
     }
     private void SetSpawnPosition()
     {
@@ -44,4 +45,12 @@ public class SpawnManager : MonoBehaviour
         
     }
     
+    private void MakeItDifficult()
+    {
+        if (GameManager.Instance.score == 1000)
+        {
+            _spawnRate = 2;
+        }
+    }
+
 }

@@ -64,6 +64,10 @@ public class UIManager : MonoBehaviour
 
     public void LoadScene(int scene)
     {
+        if (scene == 0)
+        {
+            DataManager.Instance.LoadData();
+        }
         SceneManager.LoadScene(scene);
         Time.timeScale = 1;
     }

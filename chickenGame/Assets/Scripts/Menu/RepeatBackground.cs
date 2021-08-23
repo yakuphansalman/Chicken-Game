@@ -5,13 +5,11 @@ using UnityEngine;
 public class RepeatBackground : MonoBehaviour
 {
     private Vector3 _startPos;
-    private float _repeatHeight;
     [SerializeField] private float _speed;
 
     private void Start()
     {
         _startPos = transform.position;
-        _repeatHeight = GetComponent<BoxCollider>().size.y / 2;
     }
     private void Update()
     {

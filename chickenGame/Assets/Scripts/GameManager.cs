@@ -11,11 +11,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _thirdRoad;
 
     [SerializeField] private int _levelPhase;
-
-    private const float _roadWidth = 25f;
     private int _score;
 
+    private const float _roadWidth = 25f;
+
     private bool _isGameOver;
+
+    [SerializeField] private ParticleSystem _dustParticle;
+
+    private AudioSource _gameAudio;
+    [SerializeField] AudioClip _clickAudio;
 
     #region Encapsulated Variables
     public GameObject firstRoad => _firstRoad;
@@ -23,7 +28,6 @@ public class GameManager : MonoBehaviour
     public GameObject thirdRoad => _thirdRoad;
 
     public int levelPhase => _levelPhase;
-
     public int score => _score;
 
     public bool isGameOver => _isGameOver;
@@ -54,9 +58,9 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        _firstRoad = GameObject.Find("Road1");
-        _secondRoad = GameObject.Find("Road2");
-        _thirdRoad = GameObject.Find("Road3");
+        _gameAudio = GetComponent<AudioSource>();
+
+        ManageMusic();
     }
     private void Update()
     {
@@ -64,6 +68,7 @@ public class GameManager : MonoBehaviour
         PutTheRoads();
         CheckTheGame();
         ManageScore();
+        ManageParticleEffects();
     }
     private void CheckLevelPhases()
     {
@@ -108,12 +113,8 @@ public class GameManager : MonoBehaviour
     {
         if (_isGameOver)
         {
-            Time.timeScale = 0;
+            PlayerController.Instance.gameObject.SetActive(false);
             DataManager.Instance.SaveData();
-        }
-        if (!_isGameOver)
-        {
-            Time.timeScale = 1;
         }
         if (PlayerController.Instance.healthPoint == 0)
         {
@@ -127,5 +128,30 @@ public class GameManager : MonoBehaviour
     private void ManageScore()
     {
         _score = (int)(Mathf.Abs(PlayerController.Instance.transform.position.x / _roadWidth) * 100);
+    }
+    private void ManageParticleEffects()
+    {
+        GameObject[] grasses = GameObject.FindGameObjectsWithTag("Grass");
+        float grassWidth = 5f;
+
+        foreach (var grass in grasses)
+        {
+            if (Mathf.Abs(PlayerController.Instance.transform.position.x - grass.transform.position.x) < grassWidth / 2 && PlayerController.Instance.horizontalInput != 0)
+            {
+                _dustParticle.Play();
+            }
+            else if (Mathf.Abs(PlayerController.Instance.transform.position.x - grass.transform.position.x) <= (grassWidth / 2) + 0.2f && Mathf.Abs(PlayerController.Instance.transform.position.x - grass.transform.position.x) > grassWidth / 2)
+            {
+                _dustParticle.Pause();
+            }
+        }
+    }
+    private void ManageMusic()
+    {
+        _gameAudio.volume = DataManager.Instance.dm_musicVolume;
+    }
+    public void Click()
+    {
+        _gameAudio.PlayOneShot(_clickAudio);
     }
 }

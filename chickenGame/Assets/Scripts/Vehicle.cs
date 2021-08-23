@@ -18,7 +18,7 @@ public class Vehicle : MonoBehaviour
     }
     private void DriveAway()
     {
-        transform.position += Vector3.back * _speedDynamic * Time.deltaTime;
+        transform.position += transform.forward * _speedDynamic * Time.deltaTime;
     }
     private void SpeedThemUp()
     {

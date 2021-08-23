@@ -10,6 +10,8 @@ public class DataManager : MonoBehaviour
 
     private int _highScore;
 
+    [Range(0,100)]private float _musicVolume;
+
     private string _highScorer;
     private string _player;
 
@@ -17,6 +19,8 @@ public class DataManager : MonoBehaviour
 
     #region Encapsulated Variables
     public int dm_highScore => _highScore;
+
+    public float dm_musicVolume => _musicVolume;
 
     public string dm_highScorer => _highScorer;
     public string dm_player => _player;
@@ -37,18 +41,26 @@ public class DataManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
         LoadData();
-        
     }
     private void Update()
     {
         _scene = SceneManager.GetActiveScene();
+
+        if (_scene == SceneManager.GetSceneByName("MenuScene"))
+        {
+            _musicVolume = MenuGameManager.Instance.audioSlider.value;
+            Time.timeScale = 1;
+        }
+
         if (_scene == SceneManager.GetSceneByName("SampleScene"))
         {
             if (GameManager.Instance.score > _highScore)
             {
                 _highScore = GameManager.Instance.score;
                 _highScorer = _player;
+                SaveData();
             }
+            
         }
         _player = MenuUIManager.Instance.nameEntered;
     }
@@ -64,6 +76,8 @@ public class DataManager : MonoBehaviour
         public string playerData;
 
         public int highScoreData;
+
+        public float musicVolumeData;
     }
 
     public void SaveData()
@@ -72,6 +86,7 @@ public class DataManager : MonoBehaviour
         data.highScoreData = _highScore;
         data.highScorerData = _highScorer;
         data.playerData = _player;
+        data.musicVolumeData = _musicVolume;
 
         string json = JsonUtility.ToJson(data);
 
@@ -89,6 +104,7 @@ public class DataManager : MonoBehaviour
             _highScore = data.highScoreData;
             _highScorer = data.highScorerData;
             _player = data.playerData;
+            _musicVolume = data.musicVolumeData;
         }
     }
 }

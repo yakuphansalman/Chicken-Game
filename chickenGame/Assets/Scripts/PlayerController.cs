@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[DefaultExecutionOrder(1000)]
 public class PlayerController : MonoBehaviour
 {
     #region Variables
     [SerializeField] private float _speed;
-    private float _healthPoint = 3;
+    private float _healthPoint;
     private float _horizontalInput;
+
+    [SerializeField] private AudioClip _hurtAudioClip;
+    private AudioSource _hurtAudioSource;
 
     #region Encapsulated Variables
     public float speed => _speed;
@@ -36,8 +40,13 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        _healthPoint = 3;
         _instance = this;
+
+        _healthPoint = 3;
+    }
+    private void Start()
+    {
+        _hurtAudioSource = GetComponent<AudioSource>();
     }
     private void FixedUpdate()
     {
@@ -59,9 +68,10 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Vehicle"))
+        if (other.gameObject.CompareTag("Vehicle") && transform.position.x != 0)
         {
             _healthPoint--;
+            _hurtAudioSource.PlayOneShot(_hurtAudioClip);
             other.gameObject.SetActive(false);
         }
     }
