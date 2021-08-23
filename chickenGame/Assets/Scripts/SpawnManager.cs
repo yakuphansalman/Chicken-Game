@@ -17,12 +17,12 @@ public class SpawnManager : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating("InstantiatePooledObjects", 0.2f, _spawnRate);
+        InvokeRepeating("InstantiatePooledObjects", 0.3f, _spawnRate);
     }
     private void Update()
     {
-        SetSpawnPosition();
-        MakeItDifficult();
+        SetSpawnPosition();//ABSTRACTION
+        MakeItDifficult();//ABSTRACTION
     }
     private void SetSpawnPosition()
     {

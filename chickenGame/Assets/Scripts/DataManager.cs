@@ -18,15 +18,16 @@ public class DataManager : MonoBehaviour
     private Scene _scene;
 
     #region Encapsulated Variables
-    public int dm_highScore => _highScore;
+    public int dm_highScore => _highScore;//ENCAPSULATION
 
-    public float dm_musicVolume => _musicVolume;
+    public float dm_musicVolume => _musicVolume;//ENCAPSULATION
 
-    public string dm_highScorer => _highScorer;
-    public string dm_player => _player;
+    public string dm_highScorer => _highScorer;//ENCAPSULATION
+    public string dm_player => _player;//ENCAPSULATION
     #endregion
 
     #endregion
+
     #region Singleton
     public static DataManager Instance;
     #endregion
@@ -44,12 +45,16 @@ public class DataManager : MonoBehaviour
     }
     private void Update()
     {
+        ManageSaveData();
+    }
+
+    private void ManageSaveData()
+    {
         _scene = SceneManager.GetActiveScene();
 
         if (_scene == SceneManager.GetSceneByName("MenuScene"))
         {
             _musicVolume = MenuGameManager.Instance.audioSlider.value;
-            Time.timeScale = 1;
         }
 
         if (_scene == SceneManager.GetSceneByName("SampleScene"))
@@ -60,11 +65,10 @@ public class DataManager : MonoBehaviour
                 _highScorer = _player;
                 SaveData();
             }
-            
+
         }
         _player = MenuUIManager.Instance.nameEntered;
     }
-
     public void SetPlayerName()
     {
         _player = MenuUIManager.Instance.nameEntered;

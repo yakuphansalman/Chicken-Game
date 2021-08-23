@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     #region Variables
+
     [SerializeField] private float _speed;
     private float _healthPoint;
     private float _horizontalInput;
@@ -14,9 +15,9 @@ public class PlayerController : MonoBehaviour
     private AudioSource _hurtAudioSource;
 
     #region Encapsulated Variables
-    public float speed => _speed;
-    public float healthPoint => _healthPoint;
-    public float horizontalInput => _horizontalInput;
+    public float speed => _speed;//ENCAPSULATION
+    public float healthPoint => _healthPoint;//ENCAPSULATION
+    public float horizontalInput => _horizontalInput;//ENCAPSULATION
 
     #endregion
 
@@ -50,8 +51,8 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        Move();
-        CreateBound();
+        Move();//ABSTRACTION
+        CreateBound();//ABSTRACTION
     }
     private void Move()
     {

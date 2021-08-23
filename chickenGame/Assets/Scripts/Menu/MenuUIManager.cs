@@ -16,7 +16,7 @@ public class MenuUIManager : MonoBehaviour
 
     #region Encapsulated Variables
 
-    public string nameEntered => _nameEntered.text;
+    public string nameEntered => _nameEntered.text;//ENCAPSULATION
 
     #endregion
 

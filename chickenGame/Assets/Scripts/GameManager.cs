@@ -23,14 +23,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] AudioClip _clickAudio;
 
     #region Encapsulated Variables
-    public GameObject firstRoad => _firstRoad;
-    public GameObject secondRoad => _secondRoad;
-    public GameObject thirdRoad => _thirdRoad;
+    public GameObject firstRoad => _firstRoad;//ENCAPSULATION
+    public GameObject secondRoad => _secondRoad;//ENCAPSULATION
+    public GameObject thirdRoad => _thirdRoad;//ENCAPSULATION
 
-    public int levelPhase => _levelPhase;
-    public int score => _score;
+    public int levelPhase => _levelPhase;//ENCAPSULATION
+    public int score => _score;//ENCAPSULATION
 
-    public bool isGameOver => _isGameOver;
+    public bool isGameOver => _isGameOver;//ENCAPSULATION
 
     #endregion
 
@@ -60,15 +60,15 @@ public class GameManager : MonoBehaviour
     {
         _gameAudio = GetComponent<AudioSource>();
 
-        ManageMusic();
+        ManageMusic();//ABSTRACTION
     }
     private void Update()
     {
-        CheckLevelPhases();
-        PutTheRoads();
-        CheckTheGame();
-        ManageScore();
-        ManageParticleEffects();
+        CheckLevelPhases();//ABSTRACTION
+        PutTheRoads();//ABSTRACTION
+        CheckTheGame();//ABSTRACTION
+        ManageScore();//ABSTRACTION
+        ManageParticleEffects();//ABSTRACTION
     }
     private void CheckLevelPhases()
     {

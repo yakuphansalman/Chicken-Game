@@ -8,7 +8,7 @@ public class FollowPlayer : MonoBehaviour
 
     private void Update()
     {
-        Follow();
+        Follow();//ABSTRACTION
     }
 
     private void Follow()

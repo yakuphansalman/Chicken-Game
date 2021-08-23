@@ -5,14 +5,22 @@ using UnityEngine.UI;
 
 public class MenuGameManager : MonoBehaviour
 {
+    #region Variables
+
     [SerializeField] private Slider _audioSlider;
 
     private AudioSource _menuAudioSource;
     [SerializeField] AudioClip _clickAudio;
 
-    public AudioSource menuAudio => _menuAudioSource;
+    #region Encapsulated Variables
 
-    public Slider audioSlider => _audioSlider;
+    public AudioSource menuAudio => _menuAudioSource;//ENCAPSULATION
+
+    public Slider audioSlider => _audioSlider;//ENCAPSULATION
+
+    #endregion
+
+    #endregion
 
     #region Singleton
 

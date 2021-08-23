@@ -6,7 +6,7 @@ public class Rotater : MonoBehaviour
 {
     [SerializeField] private float _rotationSpeed;
 
-    public float rotationSpeed => _rotationSpeed;
+    public float rotationSpeed => _rotationSpeed;//ENCAPSULATION
 
     private void Update()
     {

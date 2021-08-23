@@ -13,8 +13,8 @@ public class Vehicle : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        DriveAway();
-        SpeedThemUp();
+        DriveAway();//ABSTRACTION
+        SpeedThemUp();//ABSTRACTION
     }
     private void DriveAway()
     {

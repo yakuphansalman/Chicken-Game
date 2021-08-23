@@ -2,10 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cookie : Rotater
+public class Cookie : Rotater//INHERITANCE
 {
     private float _randomNumber;
     private void Start()
+    {
+        RandomizeDimensions();//ABSTRACTION
+    }
+    public override void RotateObject()//POLYMORPHISM
+    {
+        transform.Rotate(new Vector3(_randomNumber, _randomNumber, _randomNumber) * rotationSpeed * Time.deltaTime);
+    }
+    private void RandomizeDimensions()
     {
         float random = Random.Range(0, 2);
         if (random == 0)
@@ -16,9 +24,5 @@ public class Cookie : Rotater
         {
             _randomNumber = Random.Range(0.5f, 1.0f);
         }
-    }
-    public override void RotateObject()
-    {
-        transform.Rotate(new Vector3(_randomNumber, _randomNumber, _randomNumber) * rotationSpeed * Time.deltaTime);
     }
 }
